@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  pymntwrks_api:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+    command: bash -c "python /app/manage.py migrate && python /app/manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ../src:/app
+    ports:
+      - "8000:8000"
+    stdin_open: true
+    tty: true
